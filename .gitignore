@@ -1,0 +1,4 @@
+.env
+.idea/
+apitest.iml
+node_modules/
