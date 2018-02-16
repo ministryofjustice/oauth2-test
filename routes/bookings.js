@@ -24,8 +24,8 @@ router.get('/', (req, res) => {
 
     // Get the access token object.
     const tokenConfig = {
-        username: 'KAREN',
-        password: 'password123456'
+        username: 'ITAG_USER',
+        password: 'password'
     };
 
     // Save the access token

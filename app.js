@@ -35,7 +35,7 @@ app.use('/oauth', apiProxy);
 app.use('/api', apiProxy);
 app.use('/password', password);
 app.use('/client', client);
-app.use('/userbookings', userbookings);
+app.use('/bookings', userbookings);
 app.use('/prisoners', adminprisoners);
 
 // catch 404 and forward to error handler

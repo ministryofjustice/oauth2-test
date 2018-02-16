@@ -7,5 +7,42 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <h2>Some Sample Calls</h2>
+    <p>You need the API running locally on 8080</p>
+    <pre>
+      ./gradlew assemble
+    </pre>
+    <pre>
+      java -Dspring.profiles.active=nomis-hsqldb \
+        -Doracle.jdbc.J2EE13Compliant=true \
+        -Dcom.sun.management.jmxremote.local.only=false \
+        -Djava.security.egd=file:/dev/./urandom -jar \
+        mobile-web/build/libs/mobile-web-1.0.20.jar
+    </pre>
+    <ul>
+      <li><a href="/client">Client Credentials call</a></li>
+      <li><a href="/password">Password Credentials call</a></li>
+      <li><a href="/bookings">Getting bookings a logged in user</a></li>
+      <li><a href="/client">Getting prisoner info as system user</a></li>
+    </ul>
+
+  <h2>Access via Gateway to Dev:</h2>
+    <p>You need to populate add an <pre>.env</pre> file with the following:-</p>
+    <pre>
+    USE_API_GATEWAY_AUTH=yes
+    API_ENDPOINT_URL=https://noms-api-dev.dsd.io/elite2api/
+    NOMS_TOKEN=******
+    NOMS_PRIVATE_KEY="-----BEGIN EC PRIVATE KEY-----\n*********\n-----END EC PRIVATE KEY-----"
+    </pre>
+
+    <p>Request a token at <a href="https://nomis-api-access.service.justice.gov.uk/">website</a> and choose dev</p>
+
+    <ul>
+      <li><a href="/health">Health</a></li>
+      <li><a href="/info">Info</a></li>
+    </ul>
+
+  <p>Calls can made with postman</p>
   </body>
 </html>
