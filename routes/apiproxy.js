@@ -1,11 +1,10 @@
 const proxy = require('http-proxy-middleware');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
-
-const defaultHost = 'http://localhost:8080';
+const config = require('./config');
 
 const useApiAuth = (process.env.USE_API_GATEWAY_AUTH || 'no') === 'yes';
-const baseUrl = process.env.API_ENDPOINT_URL || `${defaultHost}/api`;
+const baseUrl = process.env.API_ENDPOINT_URL || `${config.defaultHost}/api`;
 
 function generateToken() {
     const nomsToken = process.env.NOMS_TOKEN;

@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/info', apiProxy);
+app.use('/health', apiProxy);
 app.use('/oauth', apiProxy);
 app.use('/api', apiProxy);
 app.use('/password', password);

@@ -5,8 +5,7 @@ const router = express.Router();
 
 const simpleOauthModule = require('simple-oauth2');
 const rp = require('request-promise');
-
-const defaultHost = 'http://localhost:8080';
+const config = require('./config');
 
 const oauth2 = simpleOauthModule.create({
     client: {
@@ -14,7 +13,7 @@ const oauth2 = simpleOauthModule.create({
         secret: 'clientsecret'
     },
     auth: {
-        tokenHost: defaultHost,
+        tokenHost: config.defaultHost,
         tokenPath: '/oauth/token',
         authorizePath: '/oauth/authorize'
     }
@@ -35,7 +34,7 @@ router.get('/', (req, res) => {
         .then((result) => {
             const accessToken = oauth2.accessToken.create(result);
             const options = {
-                uri: `${defaultHost}/api/bookings`,
+                uri: `${config.defaultHost}/api/bookings`,
                 headers: {
                     'Authorization' : 'Bearer ' + accessToken.token.access_token,
                     'Page-Limit': '2000'

@@ -5,7 +5,7 @@ const router = express.Router();
 
 const simpleOauthModule = require('simple-oauth2');
 
-const defaultHost = 'http://localhost:8080';
+const config = require('./config');
 
 const oauth2 = simpleOauthModule.create({
     client: {
@@ -13,7 +13,7 @@ const oauth2 = simpleOauthModule.create({
         secret: 'clientsecret'
     },
     auth: {
-        tokenHost: defaultHost,
+        tokenHost: config.defaultHost,
         tokenPath: '/oauth/token',
         authorizePath: '/oauth/authorize'
     }
