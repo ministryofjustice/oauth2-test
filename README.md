@@ -1,13 +1,13 @@
 ## OAUTH2 tester and Proxy
 
-###Build
+### Build
 ```bash
 git clone git@github.com:ministryofjustice/oauth2-test.git
 cd oauth2-test
 yarn
 ```
 
-###Configure
+### Configure
 You need to create an .env file with the following:-
 ```properties
 USE_API_GATEWAY_AUTH=yes
@@ -16,7 +16,7 @@ NOMS_TOKEN=******
 NOMS_PRIVATE_KEY="-----BEGIN EC PRIVATE KEY-----\n*********\n-----END EC PRIVATE KEY-----"
 ```    
 
-###Generate the private key
+### Generate the private key
 
 ```bash
 openssl ecparam -name prime256v1 -genkey -noout -out mydevclient.key 
