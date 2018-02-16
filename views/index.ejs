@@ -11,14 +11,7 @@
     <h2>Some Sample Calls</h2>
     <p>You need the API running locally on 8080</p>
     <pre>
-      ./gradlew assemble
-    </pre>
-    <pre>
-      java -Dspring.profiles.active=nomis-hsqldb \
-        -Doracle.jdbc.J2EE13Compliant=true \
-        -Dcom.sun.management.jmxremote.local.only=false \
-        -Djava.security.egd=file:/dev/./urandom -jar \
-        mobile-web/build/libs/mobile-web-1.0.20.jar
+      docker run -e SPRING_PROFILES_ACTIVE=nomis-hsqldb sysconjusticesystems/elite2-api:latest
     </pre>
     <ul>
       <li><a href="/client">Client Credentials call</a></li>
@@ -38,11 +31,12 @@
 
     <p>Request a token at <a href="https://nomis-api-access.service.justice.gov.uk/">website</a> and choose dev</p>
 
+    Sample proxy endpoints
     <ul>
       <li><a href="/health">Health</a></li>
       <li><a href="/info">Info</a></li>
     </ul>
 
-  <p>Calls can made with postman</p>
+  <p>Calls can now made with postman, curl, etc</p>
   </body>
 </html>
