@@ -7,15 +7,7 @@ cd oauth2-test
 yarn
 ```
 
-### Configure
-You need to create an .env file with the following:-
-```properties
-USE_API_GATEWAY_AUTH=yes
-API_ENDPOINT_URL=https://noms-api-dev.dsd.io/elite2api/
-NOMS_TOKEN=******
-NOMS_PRIVATE_KEY="-----BEGIN EC PRIVATE KEY-----\n*********\n-----END EC PRIVATE KEY-----"
-```    
-
+## Configure
 ### Generate the private key
 
 ```bash
@@ -23,7 +15,16 @@ openssl ecparam -name prime256v1 -genkey -noout -out mydevclient.key
 openssl ec -in mydevclient.key -pubout -out mydevclient.pub
 ```
 
-Choose Dev and Upload to the **mydevclient.pub** file to this website - https://nomis-api-access.service.justice.gov.uk/.
+Choose environment and Upload to the **mydevclient.pub** file to this website - https://nomis-api-access.service.justice.gov.uk/.
+
+You need to create an .env file with the following e.g.:-
+```properties
+USE_API_GATEWAY_AUTH=yes
+API_ENDPOINT_URL=https://noms-api-dev.dsd.io/
+API_GATEWAY_TOKEN=******
+API_GATEWAY_PRIVATE_KEY=*****
+```    
+The private key is a base64 encoded version of the private key generated in client.key. The token is sent to you via an email link.
 
 ### Running
 
