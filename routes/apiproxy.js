@@ -7,7 +7,7 @@ const useApiAuth = (process.env.USE_API_GATEWAY_AUTH || 'no') === 'yes';
 const baseUrl = process.env.API_ENDPOINT_URL || `${config.defaultHost}/api`;
 
 function generateToken() {
-    const nomsToken = process.env.NOMS_TOKEN;
+    const nomsToken = process.env.API_GATEWAY_TOKEN;
     const milliseconds = Math.round((new Date()).getTime() / 1000);
 
     const payload = {
@@ -15,7 +15,8 @@ function generateToken() {
         token: nomsToken,
     };
 
-    const privateKey = process.env.NOMS_PRIVATE_KEY || '';
+    const base64PrivateKey = process.env.API_GATEWAY_PRIVATE_KEY || '';
+    const privateKey = Buffer.from(base64PrivateKey, 'base64');
     const cert = new Buffer(privateKey);
     return jwt.sign(payload, cert, { algorithm: 'ES256' });
 }
@@ -44,10 +45,8 @@ const options = {
     changeOrigin: true,               // needed for virtual hosted sites
     ws: true,                         // proxy websockets
     pathRewrite: {
-        '^/api': 'api',                    // rewrite path
-        '^/oauth': 'oauth',                    // rewrite path
-        '^/info': 'info',                    // rewrite path
-        '^/health': 'health',
+        '^/api': '',                    // rewrite path
+        '^/oauth': 'elite2api/oauth',   // rewrite path
     },
     onProxyReq: onProxyRequest
 };

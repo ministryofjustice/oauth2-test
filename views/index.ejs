@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+</head>
+<body>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
 
-    <h2>Some Sample Calls</h2>
-    <p>You need the API running locally on 8080</p>
-    <pre>
+<h2>Access via Gateway:</h2>
+<p>Request a token at <a href="https://nomis-api-access.service.justice.gov.uk/">website</a> and choose environment</p>
+
+<p>You need to populate add an <pre>.env</pre> file with the following:-</p>
+<pre>
+        USE_API_GATEWAY_AUTH=yes
+        API_ENDPOINT_URL=https://noms-api-dev.dsd.io/
+        API_GATEWAY_TOKEN=******
+        API_GATEWAY_PRIVATE_KEY=******
+</pre>
+
+The private key is a base64 encoded version of the private key generated in client.key. The token is sent to you via an email link.
+
+<h3>Sample proxy endpoints</h3>
+<ul>
+    <li><a href="/oauth/token">OAUTH2 token endpoint</a></li>
+    <li><a href="/api/elite2api/health">Elite2 Health</a></li>
+    <li><a href="/api/elite2api/info">Elite 2 Info</a></li>
+    <li><a href="/api/newnomisapi/health">Reporting API Health</a></li>
+    <li><a href="/api/nomisapi/health">Nomis API Health</a></li>
+    <li><a href="/api/newnomisapi/offenders?page=10">A Page of offenders</a></li>
+
+</ul>
+
+<p>Calls can now made with postman, curl, etc, starting with /api/</p>
+
+<h2>Some Sample OAUTH2 Calls</h2>
+<p>You need the API running locally on 8080</p>
+<pre>
       docker run -e SPRING_PROFILES_ACTIVE=nomis-hsqldb sysconjusticesystems/elite2-api:latest
     </pre>
-    <ul>
-      <li><a href="/client">Client Credentials call</a></li>
-      <li><a href="/password">Password Credentials call</a></li>
-      <li><a href="/bookings">Getting bookings a logged in user</a></li>
-      <li><a href="/client">Getting prisoner info as system user</a></li>
-    </ul>
+<ul>
+    <li><a href="/client">Client Credentials call</a></li>
+    <li><a href="/password">Password Credentials call</a></li>
+    <li><a href="/bookings">Getting bookings a logged in user</a></li>
+    <li><a href="/client">Getting prisoner info as system user</a></li>
+</ul>
 
-  <h2>Access via Gateway to Dev:</h2>
-    <p>You need to populate add an <pre>.env</pre> file with the following:-</p>
-    <pre>
-    USE_API_GATEWAY_AUTH=yes
-    API_ENDPOINT_URL=https://noms-api-dev.dsd.io/elite2api/
-    NOMS_TOKEN=******
-    NOMS_PRIVATE_KEY="-----BEGIN EC PRIVATE KEY-----\n*********\n-----END EC PRIVATE KEY-----"
-    </pre>
 
-    <p>Request a token at <a href="https://nomis-api-access.service.justice.gov.uk/">website</a> and choose dev</p>
-
-    Sample proxy endpoints
-    <ul>
-      <li><a href="/health">Health</a></li>
-      <li><a href="/info">Info</a></li>
-    </ul>
-
-  <p>Calls can now made with postman, curl, etc</p>
-  </body>
+</body>
 </html>
